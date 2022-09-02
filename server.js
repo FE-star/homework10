@@ -13,9 +13,15 @@ server.get("/", (req, res) => {
 
   renderToString(app).then((html) => {
     res.send(`
-      <body>
-        <div id="app">${html}</div>
-      </body> 
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Vue SSR Example</title>
+        </head>
+        <body>
+          <div id="app">${html}</div>
+        </body>
+      </html>
     `);
   });
 });
