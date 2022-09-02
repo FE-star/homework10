@@ -9,7 +9,7 @@
     "test": "jest",
     "dev": "nuxt dev",
     "build": "nuxt clean && nuxt build",
-    "nuxt-preview": "nuxt clean && nuxt build && cross-env PORT=3001 node .output/server/index.mjs"
+    "nuxt-start": "cross-env PORT=3001 node .output/server/index.mjs"
   },
   "keywords": [],
   "author": "",

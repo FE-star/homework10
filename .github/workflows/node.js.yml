@@ -26,5 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm i
+    - run: npm run build
     # Just run tests once
-    - run: npm run nuxt-preview && npm run start  && npm test
+    - run: npm run nuxt-start & npm run start  & npm test
