@@ -1,3 +1,3 @@
-import { createVueApp } from './src/main';
+import { createApp } from './app.js';
 
-createVueApp().mount('#app');
+createApp().mount('#app');

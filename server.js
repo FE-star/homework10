@@ -1,19 +1,37 @@
-// TODO 监听3000端口，便于执行test
 import express from 'express';
 import { renderToString } from 'vue/server-renderer';
-import { createVueApp } from './src/main';
+import { createApp } from './app.js';
 
+const server = express();
 
-const serve = express();
+server.get('/', (req, res) => {
+    const app = createApp();
 
-serve.get('/', (req, res) => {
-    const app = createVueApp();
     renderToString(app).then((html) => {
-        console.log(html);
-        res.send(``);
-    })
+        res.send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Vue SSR Example</title>
+        <script type="importmap">
+          {
+            "imports": {
+              "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+            }
+          }
+        </script>
+        <script type="module" src="/client.js"></script>
+      </head>
+      <body>
+        <div id="app">${html}</div>
+      </body>
+    </html>
+    `);
+    });
 });
 
-serve.listen(3000, () => {
-    console.log('listening');
-})
+server.use(express.static('.'));
+
+server.listen(3000, () => {
+    console.log('ready');
+});
