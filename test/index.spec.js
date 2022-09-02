@@ -16,7 +16,6 @@ describe('NuxtLogo', () => {
     const page = await browser.newPage();
     await page.goto('http://localhost:3001')
     const bodyHandle = await page.$('body > div[id="__nuxt"]');
-    console.log(bodyHandle)
     const bodyOuterHTML = await page.evaluate(dom => dom.outerHTML, bodyHandle);
     await bodyHandle.dispose();
     browser.close();
