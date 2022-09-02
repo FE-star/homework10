@@ -5,10 +5,10 @@ import { createApp } from './app.js';
 const server = express();
 
 server.get('/', (req, res) => {
-    const app = createApp();
+  const app = createApp();
 
-    renderToString(app).then((html) => {
-        res.send(`
+  renderToString(app).then((html) => {
+    res.send(`
     <!DOCTYPE html>
     <html>
       <head>
@@ -27,11 +27,11 @@ server.get('/', (req, res) => {
       </body>
     </html>
     `);
-    });
+  });
 });
 
 server.use(express.static('.'));
 
 server.listen(3000, () => {
-    console.log('ready');
+  console.log('ready, listening on 3000');
 });
