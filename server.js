@@ -143,7 +143,7 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, {
     'Content-Type': 'text/html;charset=utf-8'
   })
-  let templateKey = 'default'
+  let element
 
   if (req.url && /\?/.test(req.url)) {
     const search = req.url.replace(/(.*)\?/, '')
@@ -153,13 +153,23 @@ const server = http.createServer((req, res) => {
       const query = item.split('=')
 
       if (query[0] === 'template') {
-        templateKey = query[1]
+        if (Template[query[1]]) {
+          element = Template[query[1]]
+        }
         break
+      }
+
+      if (query[0] === 'json') {
+        try {
+          element = JSON.parse(decodeURIComponent(query[1]))
+          break
+        } catch (error) {
+          console.error(error)
+        }
       }
     }
   }
 
-  const element = Template[templateKey]
   const content = createHtml(element)
   const html = `<!DOCTYPE html>
   <html lang="en">
