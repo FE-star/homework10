@@ -117,7 +117,7 @@ function createHtml(element = Template.default) {
   }
 
   if (element.type === 'element') {
-    // 忽略script标签，避免注入风险http://localhost:3000?json=%7B%22tagName%22%3A%22div%22%2C%22type%22%3A%22element%22%2C%22attributes%22%3A%5B%7B%22name%22%3A%22id%22%2C%22value%22%3A%22app%22%7D%5D%2C%22children%22%3A%5B%7B%22tagName%22%3A%22script%22%2C%22type%22%3A%22element%22%2C%22children%22%3A%5B%7B%22type%22%3A%22text%22%2C%22content%22%3A%22alert(1)%22%7D%5D%7D%2C%7B%22tagName%22%3A%22span%22%2C%22type%22%3A%22element%22%2C%22attributes%22%3A%5B%7B%22name%22%3A%22id%22%2C%22value%22%3A%22testSpan%22%7D%2C%7B%22name%22%3A%22style%22%2C%22value%22%3A%22color%3A%20red%3B%22%7D%5D%2C%22children%22%3A%5B%7B%22type%22%3A%22text%22%2C%22content%22%3A%22Test%20Span%22%7D%5D%7D%2C%7B%22type%22%3A%22text%22%2C%22content%22%3A%22Vue%20SSR%20Example%22%7D%2C%7B%22tagName%22%3A%22ul%22%2C%22type%22%3A%22element%22%2C%22attributes%22%3A%5B%7B%22name%22%3A%22id%22%2C%22value%22%3A%22ulNode%22%7D%2C%7B%22name%22%3A%22data-spm%22%2C%22value%22%3A%22spm1%22%7D%5D%2C%22children%22%3A%5B%7B%22tagName%22%3A%22li%22%2C%22type%22%3A%22element%22%2C%22children%22%3A%5B%7B%22tagName%22%3A%22a%22%2C%22type%22%3A%22element%22%2C%22attributes%22%3A%5B%7B%22name%22%3A%22href%22%2C%22value%22%3A%22https%3A%2F%2Fwww.baidu.com%22%7D%5D%2C%22children%22%3A%5B%7B%22type%22%3A%22text%22%2C%22content%22%3A%22go%20to%20baidu%22%7D%5D%7D%5D%7D%2C%7B%22tagName%22%3A%22li%22%2C%22type%22%3A%22element%22%2C%22children%22%3A%5B%7B%22type%22%3A%22text%22%2C%22content%22%3A%22do%20nothing%22%7D%5D%7D%5D%7D%5D%7D
+    // 忽略script标签，避免注入风险
     if (element.tagName === 'script') {
       return ''
     }
@@ -156,7 +156,7 @@ const server = http.createServer((req, res) => {
     for (const item of queryArr) {
       const query = item.split('=')
 
-      // 指定渲染模板可由后端配置
+      // 指定渲染模板，实际应用中可在后台配置若干模板，用户可以配置要显示的模板进行展示
       if (query[0] === 'template') {
         if (Template[query[1]]) {
           element = Template[query[1]]
