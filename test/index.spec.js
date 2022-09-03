@@ -42,6 +42,17 @@ describe('NuxtLogo 使用JSON参数', () => {
         }
       ],
       children: [
+        // 尝试插入一个script标签，会被后端忽略
+        {
+          tagName: 'script',
+          type: 'element',
+          children: [
+            {
+              type: 'text',
+              content: 'alert(1)'
+            }
+          ]
+        },
         {
           tagName: 'span',
           type: 'element',
