@@ -6,6 +6,7 @@ import { renderToString } from 'vue/server-renderer'
 const server = express()
 
 server.get('/', (req, res) => {
+  
   const app = createSSRApp({
     data: () => ({ content: "Vue SSR Example" }),
     template: `<div>{{ content}}</div>`
