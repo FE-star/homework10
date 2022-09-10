@@ -30,6 +30,7 @@ server.get('/', (req, res) => {
   })
 })
 
-server.listen(3000, () => {
-  console.log('ready')
+const port = 3000
+server.listen(port, () => {
+  console.log(`started at http://127.0.0.1:${port}`)
 })
