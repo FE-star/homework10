@@ -9,3 +9,6 @@
 * 在server.js中，实现ssr的服务端逻辑，处理页面和模板入参后，返回html页面到前端。
 
 * 参考示例：https://vuejs.org/guide/scaling-up/ssr.html#client-hydration
+
+-----------------------------------------------------------------------------
+## 必须先 npm run start 再 npm run test 进行单元测试 
