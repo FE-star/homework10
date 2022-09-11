@@ -1,22 +1,35 @@
 // TODO 监听3000端口，便于执行test
 import express from 'express';
-import { createApp } from 'vue';
+import { createSSRApp } from 'vue';
+import { renderToString } from 'vue/server-renderer';
+
 const server = express();
 
 server.get('*', (req, res) => {
-  // const app = new Vue({
-  //   data: {
-  //     array: ['vue', 'java', 'python', 'javascript'],
-  //   },
-  //   template: `<div id="app"><div>Vue SSR Example</div></div>`,
-  // });
+  const app = createSSRApp({
+    data: () => ({
+      content: 'Vue SSR Example',
+    }),
+    template: `<div>{{ content }}</div>`,
+  });
 
-  res.send(
-    '<!DOCTYPE html><html lang="en"><head><title>Vue Js – SSR SAMPLE</title></head><body>html</body></html>'
-  );
+  renderToString(app).then((html) => {
+    res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <html>
+      <head>
+        <title>Vue SSR Example</title>
+      </head>
+      <body>
+        <div id="app">${html}</div>
+      </body>
+    </html>
+    `);
+  });
 });
 
-const PORT = 4000;
+const PORT = 3000;
 
 server.listen(PORT, () => {
   console.log(`server listening on port ${PORT}`);
