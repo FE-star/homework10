@@ -1,6 +1,6 @@
 // TODO 监听3000端口，便于执行test
 import express from 'express';
-import { Vue, createApp } from 'vue';
+import { createApp } from 'vue';
 const server = express();
 
 server.get('*', (req, res) => {
